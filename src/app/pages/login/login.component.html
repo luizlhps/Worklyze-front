@@ -1,0 +1,67 @@
+<div class="flex flex-col items-center justify-center min-h-[calc(100%-var(--header-height))] w-full px-5">
+  <div class="flex flex-col items-center mb-11">
+    <h1 class="text-4xl font-medium mb-2">Seja Bem-Vindo</h1>
+    <h2 class="mt-[-0.175rem] text-base max-w-[740px] font-normal text-center text-[var(--secondary)]">Vamos começar Anotar suas tarefas ?</h2>
+  </div>
+
+  <form [formGroup]="authForm" class="w-full max-w-[530px]">
+    <div class="flex flex-col gap-2">
+      <label for="username" class="font-normal text-[var(--p-surface-300)]">Email</label>
+      <input
+        class="text-sm"
+        formControlName="username"
+        type="text"
+        placeholder="Digite seu nome de usuário"
+        [ngClass]="{
+          'ng-invalid ng-dirty': authForm.get('username')?.invalid && (authForm.get('username')?.dirty || authForm.get('username')?.touched)
+        }"
+        pInputText
+      />
+    </div>
+
+    <div class="flex flex-col gap-2 mt-7">
+      <label for="password" class="font-normal text-[var(--p-surface-300)]">Senha</label>
+      <input
+        class="text-sm"
+        formControlName="password"
+        type="password"
+        autocomplete="on"
+        placeholder="Digite sua senha"
+        [ngClass]="{
+          'ng-invalid ng-dirty': authForm.get('password')?.invalid && (authForm.get('password')?.dirty || authForm.get('password')?.touched)
+        }"
+        pInputText
+      />
+    </div>
+
+    <p-button
+      size="small"
+      [loading]="loading"
+      type="submit"
+      styleClass="h-[46px] uppercase"
+      (click)="handleLogin()"
+      [style]="{ width: '100%' }"
+      class="block w-full mt-8"
+      label="Logar"
+    />
+  </form>
+
+  @if (msgError) {
+
+  <p-message size="small" class="mt-6" severity="error">{{ msgError }}</p-message>
+  }
+
+  <p-divider styleClass="max-w-[530px] "></p-divider>
+
+  <div class="flex gap-2">
+    <div
+      (click)="authGoogle()"
+      class="w-[60px] flex items-center justify-center h-[40px] rounded cursor-pointer border border-[var(--p-surface-500)]"
+    >
+      <i [style]="{ fontSize: '20px' }" class="fa fa-brands fa-google"></i>
+    </div>
+    <div class="w-[60px] flex items-center justify-center h-[40px] rounded cursor-pointer border border-[var(--p-surface-500)]">
+      <i [style]="{ fontSize: '20px' }" class="fa fa-brands fa-github"></i>
+    </div>
+  </div>
+</div>

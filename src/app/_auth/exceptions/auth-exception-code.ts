@@ -1,0 +1,3 @@
+export enum AuthExceptionCode {
+  USUARIO_EMAIL_SENHA_INVALIDO = 'USUARIO_EMAIL_SENHA_INVALIDO',
+}
