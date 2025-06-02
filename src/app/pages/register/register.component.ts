@@ -1,23 +1,22 @@
+import { RouteToNavigate } from './../../shared/enum/route-to-navigate-enum';
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { CommonModule, NgIf, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { take, finalize } from 'rxjs';
-import { Message } from 'primeng/message';
-import { AuthService } from '../../_auth/_service/auth.service';
-import { AuthRequest } from '../../_auth/_dto/auth-request';
-import { customExceptionHandler } from '../../shared/utils/custom-exception-handler';
-import { genericErrorHandler } from '../../shared/utils/generic-error-handler';
 import { DividerModule } from 'primeng/divider';
-import { InputTextFormComponent } from '../../shared/components/forms/input-text-form/input-text-form.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { Message } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputPasswordFormComponent } from '../../shared/components/forms/input-password-form/input-password-form.component';
-import { RouteToNavigate } from '../../shared/enum/route-to-navigate-enum';
+import { InputTextFormComponent } from '../../shared/components/forms/input-text-form/input-text-form.component';
+import { take, finalize } from 'rxjs';
+import { AuthRequest } from '../../_auth/_dto/auth-request';
+import { AuthService } from '../../_auth/_service/auth.service';
+import { genericErrorHandler } from '../../shared/utils/generic-error-handler';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   imports: [
     CommonModule,
     InputTextModule,
@@ -31,18 +30,18 @@ import { RouteToNavigate } from '../../shared/enum/route-to-navigate-enum';
     InputPasswordFormComponent,
     RouterLink,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
-export class LoginComponent {
+export class RegisterComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  RouteToNavigate = RouteToNavigate;
+
   loading = false;
   msgError?: string;
-
-  RouteToNavigate = RouteToNavigate;
 
   protected authForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.email]],

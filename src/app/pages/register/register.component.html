@@ -1,18 +1,33 @@
-<div class="flex flex-col items-center justify-center min-h-[calc(100%-var(--header-height))] w-full px-5">
+<div class="flex flex-col items-center justify-center w-full px-5">
   <div class="flex flex-col items-center mb-11">
-    <h1 class="text-4xl text-center font-medium mb-2 tracking-wide">Seja Bem-Vindo</h1>
-    <h2 class="font-light mt-[-0.175rem] text-lg max-w-[740px] text-center text-[var(--p-primary-500)]">Vamos começar Anotar suas tarefas ?</h2>
+    <h1 class="text-4xl text-center font-medium mb-2 tracking-wide">Registrar</h1>
+    <h2 class="font-light mt-[-0.175rem] text-md max-w-[740px] text-center text-[var(--p-surface-400)]">
+      Novo aqui ? vamos cadastrar sua conta sem burocracias
+    </h2>
   </div>
 
   <form [formGroup]="authForm" class="w-full max-w-[530px]">
-    <input-text-form formId="email" label="Email" [control]="authForm.controls.username" placeholder="Digite seu email" type="text"></input-text-form>
+    <div class="flex gap-6 flex-wrap">
+      <input-text-form formId="nome" label="Nome" [control]="authForm.controls.username" placeholder="Digite seu nome" type="text"></input-text-form>
+
+      <input-text-form formId="Sobrenome" label="Sobrenome" [control]="authForm.controls.username" placeholder="" type="text"></input-text-form>
+    </div>
+
+    <input-text-form
+      class="mt-6"
+      formId="email"
+      label="Email"
+      [control]="authForm.controls.username"
+      placeholder="Digite seu email"
+      type="text"
+    ></input-text-form>
 
     <input-password-form
       formId="senha"
       class="mt-6"
       label="Senha"
       [control]="authForm.controls.password"
-      placeholder="Digite sua senha"
+      placeholder="Digite seu nome de usuário"
     ></input-password-form>
 
     <p-button
@@ -23,16 +38,16 @@
       (click)="handleLogin()"
       [style]="{ width: '100%' }"
       class="block w-full mt-8"
-      label="Logar"
+      label="Registrar"
     />
   </form>
 
   <small class="mt-6"
-    >Não tem uma conta?
-    <span [routerLink]="['/', RouteToNavigate.REGISTER]" class="text-[var(--p-primary-500)] cursor-pointer">Registrar</span></small
+    >Já tem uma conta? <span [routerLink]="['/', RouteToNavigate.LOGIN]" class="text-[var(--p-primary-500)] cursor-pointer">Logar</span></small
   >
 
   @if (msgError) {
+
   <p-message size="small" class="mt-6" severity="error">{{ msgError }}</p-message>
   }
 

@@ -1,0 +1,23 @@
+@if (label) {
+<label class="font-light text-[var(--p-surface-300)]" [for]="formId">{{ label }}</label>
+}
+
+<p-datepicker
+  [formControl]="control"
+  [inputStyle]="{ height: '100%', width: '100%' }"
+  [showButtonBar]="showButtonBar"
+  [placeholder]="placeholder"
+  [style]="{ width: '100%' }"
+  [iconDisplay]="iconDisplay"
+  [showIcon]="showIcon"
+  [inputId]="formId"
+  [showOnFocus]="showOnFocus"
+  [appendTo]="appendTo"
+  [readonlyInput]="readOnly"
+  [showClear]="showClear"
+  [ngClass]="{
+    'ng-invalid ng-dirty': control.invalid && (control.dirty || control.touched),
+  }"
+/>
+
+<ng-content select="[error-message]"></ng-content>

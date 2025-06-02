@@ -13,6 +13,9 @@ import { isPlatformBrowser } from '@angular/common';
 export class HeaderComponent {
   routes: { name: string; path: string }[] = [];
   private authService = inject(AuthService);
+  private router = inject(Router);
+
+  RouteToNavigate = RouteToNavigate;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -27,6 +30,10 @@ export class HeaderComponent {
         this.addRoutesUnauthenticated();
       });
     }
+  }
+
+  redirectRoot() {
+    this.router.navigate([RouteToNavigate.ROOT]);
   }
 
   private addRoutesAuthenticated() {

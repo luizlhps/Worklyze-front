@@ -1,0 +1,21 @@
+@if (label) {
+  <label class="label" [for]="formId">{{ label }}</label>
+}
+
+<textarea
+  class="text-sm"
+  [id]="formId"
+  [rows]="rows"
+  [cols]="cols"
+  [formControl]="control"
+  [autoResize]="autoResize"
+  type="text"
+  [readOnly]="readOnly"
+  pTextarea
+  [ngClass]="{
+    'ng-invalid ng-dirty': control.invalid && (control.dirty || control.touched),
+  }"
+  [placeholder]="placeholder ? placeholder : 'Digite seu ' + (label ? label : '')"
+></textarea>
+
+<ng-content select="[error-message]"></ng-content>

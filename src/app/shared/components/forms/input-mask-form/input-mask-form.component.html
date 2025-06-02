@@ -1,0 +1,16 @@
+@if (label) {
+<label class="font-light text-[var(--p-surface-300)]" [for]="formId">{{ label }}</label>
+}
+
+<p-inputMask
+  [style]="{ width: '100%' }"
+  [mask]="mask"
+  [size]="size"
+  [placeholder]="placeholder"
+  [ngClass]="{
+    'ng-invalid ng-dirty': control.invalid && (control.dirty || control.touched),
+  }"
+  [formControl]="control"
+  type="phone"
+></p-inputMask>
+<ng-content select="[external-icon]"></ng-content>

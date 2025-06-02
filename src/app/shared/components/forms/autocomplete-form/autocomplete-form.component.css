@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  color: var(--color-secondary);
+  margin-bottom: 0.375rem;
+}
+
+.input {
+}

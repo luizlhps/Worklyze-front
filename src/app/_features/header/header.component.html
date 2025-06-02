@@ -1,6 +1,6 @@
 <div class="h-[var(--height-header)] border-b border-[var(--p-surface-800)]">
-  <div class="flex w-full h-full mx-auto items-center gap-7 max-w-[var(--max-width)] px-3">
-    <svg width="109" height="22" viewBox="0 0 109 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="flex w-full h-full mx-auto justify-between items-center gap-7 max-w-[var(--max-width)] px-3">
+    <svg (click)="redirectRoot()" class="cursor-pointer" width="109" height="22" viewBox="0 0 109 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="Group 142">
         <path
           id="Worklyze"
@@ -23,14 +23,14 @@
     </svg>
 
     <nav class="h-full" role="navigation" aria-label="main navigation">
-      <ul class="flex gap-2 h-full font-light text-sm">
+      <ul class="flex gap-3 h-full font-light text-sm">
         @for (item of routes; track $index) {
         <li
-          class="h-full flex items-center justify-center"
-          routerLinkActive="border-b  border-[var(--p-primary-500)]"
+          class="h-full flex items-center justify-center text-[var(--p-surface-300)]"
+          routerLinkActive="border-b  border-[var(--p-primary-500)] !text-[var(--p-surface-0)]"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a [routerLink]="item.path">{{ item.name }}</a>
+          <a class="hover:text-[var(--p-surface-0)] transition duration-150 ease-in-out" [routerLink]="item.path">{{ item.name }}</a>
         </li>
         }
       </ul>

@@ -1,0 +1,27 @@
+@if (label) {
+<label class="font-light text-[var(--p-surface-300)]" [for]="formId">{{ label }}</label>
+}
+
+<p-autoComplete
+  [autocomplete]="autocomplete"
+  [formControl]="control"
+  [suggestions]="items"
+  (completeMethod)="search.emit($event)"
+  [dropdown]="dropdown"
+  [size]="size"
+  [appendTo]="'body'"
+  [optionLabel]="optionLabel"
+  [style]="{ width: '100%' }"
+  [inputStyle]="{ width: '100%' }"
+  [virtualScroll]="virtualScroll"
+  [placeholder]="placeholder"
+  [virtualScrollItemSize]="virtualScrollItemSize"
+  [minLength]="minLength"
+  (onSelect)="onItemSelected.emit($event)"
+  [ngClass]="{
+    'ng-invalid ng-dirty': control.invalid && (control.dirty || control.touched),
+  }"
+  placeholder="Buscar item..."
+>
+</p-autoComplete>
+<ng-content select="[external-icon]"></ng-content>
