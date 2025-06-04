@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment.development';
 import { AuthResponse } from '../_dto/auth-response';
 import { jwtDecode } from 'jwt-decode';
 import { AuthRequest } from '../_dto/auth-request';
+import { AuthRegister } from '../_dto/auth-register';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,15 @@ export class AuthService {
 
   login(dto: AuthRequest): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${this.baseUrl}v1/auth/login`, dto).pipe(
+      tap((value) => {
+        this.setTokenAuth(value.token);
+        this.autoPopulateToken();
+      })
+    );
+  }
+
+  register(dto: AuthRegister): Observable<AuthResponse> {
+    return this.httpClient.post<AuthResponse>(`${this.baseUrl}v1/auth/register`, dto).pipe(
       tap((value) => {
         this.setTokenAuth(value.token);
         this.autoPopulateToken();

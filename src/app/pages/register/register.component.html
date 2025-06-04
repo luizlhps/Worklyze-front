@@ -8,16 +8,16 @@
 
   <form [formGroup]="authForm" class="w-full max-w-[530px]">
     <div class="flex gap-6 flex-wrap">
-      <input-text-form formId="nome" label="Nome" [control]="authForm.controls.username" placeholder="Digite seu nome" type="text"></input-text-form>
+      <input-text-form formId="nome" label="Nome" [control]="authForm.controls.name" placeholder="Digite seu nome" type="text"></input-text-form>
 
-      <input-text-form formId="Sobrenome" label="Sobrenome" [control]="authForm.controls.username" placeholder="" type="text"></input-text-form>
+      <input-text-form formId="Sobrenome" label="Sobrenome" [control]="authForm.controls.surname" placeholder="" type="text"></input-text-form>
     </div>
 
     <input-text-form
       class="mt-6"
       formId="email"
       label="Email"
-      [control]="authForm.controls.username"
+      [control]="authForm.controls.email"
       placeholder="Digite seu email"
       type="text"
     ></input-text-form>

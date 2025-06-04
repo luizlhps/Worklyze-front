@@ -14,6 +14,7 @@ import { AuthRequest } from '../../_auth/_dto/auth-request';
 import { AuthService } from '../../_auth/_service/auth.service';
 import { genericErrorHandler } from '../../shared/utils/generic-error-handler';
 import { Router, RouterLink } from '@angular/router';
+import { AuthRegister } from '../../_auth/_dto/auth-register';
 
 @Component({
   selector: 'app-register',
@@ -44,13 +45,11 @@ export class RegisterComponent {
   msgError?: string;
 
   protected authForm = this.formBuilder.group({
-    username: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required /* Validators.minLength(8) */]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    surname: ['', [Validators.required]],
   });
-
-  private clearError() {
-    this.msgError = undefined;
-  }
 
   handleLogin() {
     this.authForm.markAllAsTouched();
@@ -59,13 +58,15 @@ export class RegisterComponent {
     if (this.authForm.valid) {
       this.loading = true;
 
-      const loginRequestDto: AuthRequest = {
-        email: this.authForm.controls.username.value ?? '',
+      const registerRequestDto: AuthRegister = {
+        email: this.authForm.controls.email.value ?? '',
         password: this.authForm.controls.password.value ?? '',
+        surname: this.authForm.controls.surname.value ?? '',
+        name: this.authForm.controls.name.value ?? '',
       };
 
       this.authService
-        .login(loginRequestDto)
+        .register(registerRequestDto)
         .pipe(
           take(1),
           finalize(() => {
